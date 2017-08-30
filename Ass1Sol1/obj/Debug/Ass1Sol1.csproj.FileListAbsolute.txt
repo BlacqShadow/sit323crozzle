@@ -1,0 +1,9 @@
+\\homes.deakin.edu.au\rudra\UserData\Desktop\Assginments\SIT323 - Practical Software Development\Ass1Sol1\Ass1Sol1\bin\Debug\Ass1Sol1.exe.config
+\\homes.deakin.edu.au\rudra\UserData\Desktop\Assginments\SIT323 - Practical Software Development\Ass1Sol1\Ass1Sol1\bin\Debug\Ass1Sol1.exe
+\\homes.deakin.edu.au\rudra\UserData\Desktop\Assginments\SIT323 - Practical Software Development\Ass1Sol1\Ass1Sol1\bin\Debug\Ass1Sol1.pdb
+\\homes.deakin.edu.au\rudra\UserData\Desktop\Assginments\SIT323 - Practical Software Development\Ass1Sol1\Ass1Sol1\obj\Debug\Ass1Sol1.csprojResolveAssemblyReference.cache
+\\homes.deakin.edu.au\rudra\UserData\Desktop\Assginments\SIT323 - Practical Software Development\Ass1Sol1\Ass1Sol1\obj\Debug\Ass1Sol1.Form1.resources
+\\homes.deakin.edu.au\rudra\UserData\Desktop\Assginments\SIT323 - Practical Software Development\Ass1Sol1\Ass1Sol1\obj\Debug\Ass1Sol1.Properties.Resources.resources
+\\homes.deakin.edu.au\rudra\UserData\Desktop\Assginments\SIT323 - Practical Software Development\Ass1Sol1\Ass1Sol1\obj\Debug\Ass1Sol1.csproj.GenerateResource.Cache
+\\homes.deakin.edu.au\rudra\UserData\Desktop\Assginments\SIT323 - Practical Software Development\Ass1Sol1\Ass1Sol1\obj\Debug\Ass1Sol1.exe
+\\homes.deakin.edu.au\rudra\UserData\Desktop\Assginments\SIT323 - Practical Software Development\Ass1Sol1\Ass1Sol1\obj\Debug\Ass1Sol1.pdb
