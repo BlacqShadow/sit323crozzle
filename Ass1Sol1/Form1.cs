@@ -72,32 +72,7 @@ namespace Ass1Sol1
             {
 
                 Crozzle newCrozzle = new Crozzle(openFileDialog1.FileName);
-                
-
-
-
-                //string todisplay = "";
-                //bool display = true;
-
-                //foreach(string l in data)
-                //{
-                //    display = true;
-                //    for(int i = 0; i < l.Length; i++)
-                //    {
-                //        if (l[i] == '/')
-                //            display = false;
-                //    }
-                //    if (display)
-                //        todisplay += "<p>" + l + "</p>";
-                //}
-
-                
-                /* Alternative Approach
-                System.IO.StreamReader sr = new System.IO.StreamReader(openFileDialog1.FileName);
-                webBrowser1.DocumentText = sr.ReadToEnd();
-                //MessageBox.Show(sr.ReadToEnd());
-                sr.Close();
-                */
+                webBrowser1.DocumentText = newCrozzle.populateForm();
             }
         }
     }

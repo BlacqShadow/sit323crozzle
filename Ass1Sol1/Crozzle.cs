@@ -20,7 +20,15 @@ namespace Ass1Sol1
         public Crozzle(string fileName)
         {
             // Read the data from the txt file and load the crozzle
-            string[] data = System.IO.File.ReadAllLines(fileName);
+            try
+            {
+                data = System.IO.File.ReadAllLines(fileName);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Unable to open file error: {0}", e.Message);
+            }
+
 
  
 
@@ -33,21 +41,19 @@ namespace Ass1Sol1
             {
                 if (Regex.IsMatch(l, rowPattern))
                 {
-                    //int index = l.IndexOf('=');
-                    rows = Convert.ToInt32(String.Format("{0}{1}", l[index + 1], l[index + 2]));
+                    //Extract the number from the string
+                    rows = Int32.Parse(Regex.Match(l, @"\d+").Value);
                 }
                 if (Regex.IsMatch(l, columnPattern))
                 {
-                    int index = l.IndexOf('=');
-                    columns = Convert.ToInt32(String.Format("{0}{1}", l[index + 1], l[index + 2]));
+                    //Extract the number from the string
+                    columns = Int32.Parse(Regex.Match(l, @"\d+").Value);
                 }
             }
 
 
             //Display the table with the right no of rows and columns
             string html = @"<table style=""width:100%; border-color: black"" border=""1"">";
-
-
             for (int i = 0; i < rows; i++)
             {
                 html += @"<tr>";
@@ -59,7 +65,6 @@ namespace Ass1Sol1
                 }
                 html += @"</tr>";
             }
-
             return html;
         }
     }
