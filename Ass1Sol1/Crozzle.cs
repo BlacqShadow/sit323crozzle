@@ -22,6 +22,7 @@ namespace Ass1Sol1
         private string wordlistFile;
         private char[,] crozzleMap;
         private string wordPattern = @"^\s*(ROW|COLUMN)=\d+,[a-zA-Z]+,\d+\s*";
+        private bool isValid;
 
         public Crozzle(string fileName)
         {
@@ -38,11 +39,27 @@ namespace Ass1Sol1
             //Initialize variables
             configurationFile = null;
             crozzleMap = null;
+            isValid = true;
 
             //Initialize form
             extractData();
+            validateCrozzle(new Configuration(configurationFile));
+            validateWordList(new Wordlist(wordlistFile));
+            
             
         }
+
+
+        private void validateWordList(Wordlist wordlist)
+        {
+            Console.WriteLine("Wordlist: {0}",wordlist.isValid);
+        }
+
+        private void validateCrozzle(Configuration configuration)
+        {
+            Console.WriteLine("Test this function");
+        }
+
         // Comment
         public string populateForm()
         {
@@ -82,13 +99,23 @@ namespace Ass1Sol1
                 // Extract Configuration File
                 if (Regex.IsMatch(l, configurationFilePattern))
                 {
-                    configurationFile = Regex.Match(l, @""".*""").Value;
+                    //extract the file name 
+                    for(int i = l.IndexOf("=") + 2 
+                        ; i < l.Length - 1; i++)
+                    {
+                        configurationFile += l[i];
+                    }
                 }
 
                 // Extract Wordlist File 
                 if (Regex.IsMatch(l, wordlistFilePattern))
                 {
-                    wordlistFile = Regex.Match(l, @""".*""").Value;
+                    //extract the file name 
+                    for (int i = l.IndexOf("=") + 2
+                        ; i < l.Length - 1; i++)
+                    {
+                        wordlistFile += l[i];
+                    }
                 }
 
                 // Extract Horizontal and vertical words
@@ -134,11 +161,8 @@ namespace Ass1Sol1
                     catch (IndexOutOfRangeException e)
                     {
                         Log.Error("Crozzle", string.Format("Invalid Crozzle! check word: {0}", word));
-                        
                     }
-                        
                 }
-                
             }
             else
             {
@@ -153,13 +177,11 @@ namespace Ass1Sol1
                     catch (IndexOutOfRangeException e)
                     {
                         Log.Error("Crozzle", string.Format("Invalid Crozzle! check word: {0}", word));
-                        //Trace.TraceError("Invalid Crozzle at word: {0}", word);
-                        //Console.WriteLine("Index out of range exception was thrown, display crozzle anyways: {0}", e.Message);
                     }
                 }
-                
             }
-
         }
+
+
     }
 }

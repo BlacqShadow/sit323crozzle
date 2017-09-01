@@ -2,3 +2,14 @@ Ass1Sol1.vshost.exe Error: 0 : Index was outside the bounds of the array.
 Ass1Sol1.vshost.exe Error: 0 : Invalid Crozzle at word: ROGER
 Ass1Sol1.vshost.exe Error: 0 : Invalid Crozzle at word: ROGER
 2017-09-01 23:56:42: Error(Crozzle) - Invalid Crozzle! check word: ROGER
+2017-09-02 00:17:50: Error(Config File) - Unable to open file error: Illegal characters in path.
+2017-09-02 00:19:33: Error(Crozzle) - Invalid Crozzle! check word: ROGER
+2017-09-02 00:19:33: Error(Config File) - Unable to open file error: Illegal characters in path.
+2017-09-02 00:20:37: Error(Config File) - Unable to open file error: Illegal characters in path.
+2017-09-02 01:23:46: Error(Config File) - Unable to open file error: Could not find file '\\homes.deakin.edu.au\rudra\UserData\Desktop\Assginments\SIT323 - Practical Software Development\sit323crozzle\Ass1Sol1\bin\Debug\Test 1 Configuration.txt'.
+2017-09-02 01:47:05: Error(Word List) - Unable to open file error: Illegal characters in path.
+2017-09-02 01:47:29: Error(Crozzle) - Invalid Crozzle! check word: ROGER
+2017-09-02 01:47:29: Error(Word List) - Unable to open file error: Illegal characters in path.
+2017-09-02 01:49:33: Error(Crozzle) - Invalid Crozzle! check word: ROGER
+2017-09-02 01:49:33: Error(Wordlist) - Duplicates found!!, invalid file.
+2017-09-02 01:50:39: Error(Crozzle) - Invalid Crozzle! check word: ROGER
