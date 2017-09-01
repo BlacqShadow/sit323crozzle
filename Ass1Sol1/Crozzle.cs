@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -124,21 +125,39 @@ namespace Ass1Sol1
             {
                 int column = Int32.Parse(Regex.Match(splitData[0], @"\d+").Value) - 1;
                 int row = Int32.Parse(splitData[2]) - 1;
-
                 for(int i = 0; i < word.Length; i++)
                 {
-                    crozzleMap[row + i,column] = word[i];
+                    try
+                    {
+                        crozzleMap[row + i, column] = word[i];
+                    }
+                    catch (IndexOutOfRangeException e)
+                    {
+                        Log.Error("Crozzle", string.Format("Invalid Crozzle! check word: {0}", word));
+                        
+                    }
+                        
                 }
+                
             }
             else
             {
                 int row = Int32.Parse(Regex.Match(splitData[0], @"\d+").Value) - 1;
                 int column = Int32.Parse(splitData[2]) - 1;
-
                 for (int i = 0; i < word.Length; i++)
                 {
-                    crozzleMap[row, column + i] = word[i];
+                    try
+                    {
+                        crozzleMap[row, column + i] = word[i];
+                    }
+                    catch (IndexOutOfRangeException e)
+                    {
+                        Log.Error("Crozzle", string.Format("Invalid Crozzle! check word: {0}", word));
+                        //Trace.TraceError("Invalid Crozzle at word: {0}", word);
+                        //Console.WriteLine("Index out of range exception was thrown, display crozzle anyways: {0}", e.Message);
+                    }
                 }
+                
             }
 
         }

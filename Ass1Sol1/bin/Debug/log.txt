@@ -1,0 +1,4 @@
+Ass1Sol1.vshost.exe Error: 0 : Index was outside the bounds of the array.
+Ass1Sol1.vshost.exe Error: 0 : Invalid Crozzle at word: ROGER
+Ass1Sol1.vshost.exe Error: 0 : Invalid Crozzle at word: ROGER
+2017-09-01 23:56:42: Error(Crozzle) - Invalid Crozzle! check word: ROGER
