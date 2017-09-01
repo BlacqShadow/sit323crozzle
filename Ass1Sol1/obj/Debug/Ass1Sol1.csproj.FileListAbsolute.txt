@@ -16,3 +16,4 @@
 \\homes.deakin.edu.au\rudra\UserData\Desktop\Assginments\SIT323 - Practical Software Development\sit323crozzle\Ass1Sol1\obj\Debug\Ass1Sol1.Form1.resources
 \\homes.deakin.edu.au\rudra\UserData\Desktop\Assginments\SIT323 - Practical Software Development\sit323crozzle\Ass1Sol1\obj\Debug\Ass1Sol1.Properties.Resources.resources
 \\homes.deakin.edu.au\rudra\UserData\Desktop\Assginments\SIT323 - Practical Software Development\sit323crozzle\Ass1Sol1\obj\Debug\Ass1Sol1.csproj.GenerateResource.Cache
+\\homes.deakin.edu.au\rudra\UserData\Desktop\Assginments\SIT323 - Practical Software Development\sit323crozzle\Ass1Sol1\obj\Debug\Ass1Sol1.Form2.resources

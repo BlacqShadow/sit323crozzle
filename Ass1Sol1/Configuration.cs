@@ -38,10 +38,10 @@ namespace Ass1Sol1
         public bool isValid;
         private bool containsInvalidCrozzleScore = false;
         private bool containsLogFile = false;
-        private string invalidCrozzleScore = "";
+        private string invalidCrozzleScore = null;
         public string bgColorEmpty = null;
         public string bgColorNonEmpty = null;
-        public bool isUpper = false;
+        public bool isUpper;
         public uint MINIMUM_NUMBER_OF_UNIQUE_WORDS = 0;
         public uint MAXIMUM_NUMBER_OF_UNIQUE_WORDS = 0;
         public uint MINIMUM_NUMBER_OF_ROWS = 0;
@@ -65,6 +65,11 @@ namespace Ass1Sol1
         public string NON_INTERSECTING_POINTS_PER_LETTER = "";
 
 
+        private void validateconfig()
+        {
+       
+        }
+
         public Configuration(string configurationFile)
         {
             try
@@ -80,6 +85,7 @@ namespace Ass1Sol1
             extractData();
         }
 
+        
         #region extracting data from the config file
         private void extractData()
         {
@@ -94,13 +100,29 @@ namespace Ass1Sol1
                 // Extract minimum and maximum unique words
                 if(Regex.IsMatch(l,minUniqueWordsPattern))
                 {
-                    //Extract the number from the string
-                    MINIMUM_NUMBER_OF_UNIQUE_WORDS = UInt32.Parse(Regex.Match(l, @"\d+").Value);
+                    try
+                    {
+
+                        //Extract the number from the string
+                        MINIMUM_NUMBER_OF_UNIQUE_WORDS = UInt32.Parse(Regex.Match(l, @"\d+").Value);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Config", e.Message);
+                    }
                 }
                 if (Regex.IsMatch(l, maxUniqueWordsPattern))
                 {
+                    try
+                    {
+
                     //Extract the number from the string
                     MAXIMUM_NUMBER_OF_UNIQUE_WORDS = UInt32.Parse(Regex.Match(l, @"\d+").Value);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Config", e.Message);
+                    }
                 }
                 if (Regex.IsMatch(l, invalidCrozzleScorePattern))
                 {
@@ -110,56 +132,104 @@ namespace Ass1Sol1
                 //Is uppercase
                 if(Regex.IsMatch(l,upperCasePattern))
                 {
-                    isUpper = bool.Parse(Regex.Match(l,@"true|false").Value);
+                    try
+                    {
+
+                        isUpper = bool.Parse(Regex.Match(l,@"true|false").Value);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Config", e.Message);
+                    }
+                   
                 }
 
                 //Extract HTML STYLE
                 if(Regex.IsMatch(l,stylePattern))
                 {
-                    style = Regex.Match(l, @"<style>.*</style>").Value;
+                    try
+                    {
+
+                        style = Regex.Match(l, @"<style>.*</style>").Value;
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Config", e.Message);
+                    }
+                    
                 }
 
                 // BGCOLORS for empty and non-empty cells
                 if(Regex.IsMatch(l, bgColorPattern))
                 {
-                    if(Regex.IsMatch(l, @"NON"))
+                    try
                     {
-                        bgColorNonEmpty = Regex.Match(l, @"#[0-9a-fA-F]{6,6}").Value;
+
+                            if (Regex.IsMatch(l, @"NON"))
+                        {
+                            bgColorNonEmpty = Regex.Match(l, @"#[0-9a-fA-F]{6,6}").Value;
+                        }
+                        else
+                        {
+                            bgColorEmpty = Regex.Match(l, @"#[0-9a-fA-F]{6,6}").Value;
+                        }
                     }
-                    else
+                    catch (Exception e)
                     {
-                        bgColorEmpty = Regex.Match(l, @"#[0-9a-fA-F]{6,6}").Value;
+                        Log.Error("Config", e.Message);
                     }
+                    
                 }
                 
                 // Invalid Crozzle score
                 if(Regex.IsMatch(l, invalidCrozzleScorePattern))
                 {
-                    invalidCrozzleScore = Regex.Match(l,@""".*""").Value;
+                    try
+                    {
+
+                       invalidCrozzleScore = Regex.Match(l,@""".*""").Value;
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Config", e.Message);
+                    }
+                    
                 }
 
                 // MIN AND MAX ROWS + Columns
                 if(Regex.IsMatch(l,numberOfRowsColumnsPattern))
                 {
-                    if(Regex.IsMatch(l,@"ROWS"))
+
+                    try
                     {
-                        if (Regex.IsMatch(l, @"MINIMUM"))
-                            MINIMUM_NUMBER_OF_ROWS = UInt32.Parse(Regex.Match(l, @"\d+").Value);
-                        else
-                            MAXIMUM_NUMBER_OF_ROWS = UInt32.Parse(Regex.Match(l, @"\d+").Value);
+                    if (Regex.IsMatch(l,@"ROWS"))
+                                        {
+                                            if (Regex.IsMatch(l, @"MINIMUM"))
+                                                MINIMUM_NUMBER_OF_ROWS = UInt32.Parse(Regex.Match(l, @"\d+").Value);
+                                            else
+                                                MAXIMUM_NUMBER_OF_ROWS = UInt32.Parse(Regex.Match(l, @"\d+").Value);
+                                        }
+                                        else
+                                        {
+                                            if (Regex.IsMatch(l, @"MINIMUM"))
+                                                MINIMUM_NUMBER_OF_COLUMNS = UInt32.Parse(Regex.Match(l, @"\d+").Value);
+                                            else
+                                                MAXIMUM_NUMBER_OF_COLUMNS = UInt32.Parse(Regex.Match(l, @"\d+").Value);
+                                        }
                     }
-                    else
+                    catch (Exception e)
                     {
-                        if (Regex.IsMatch(l, @"MINIMUM"))
-                            MINIMUM_NUMBER_OF_COLUMNS = UInt32.Parse(Regex.Match(l, @"\d+").Value);
-                        else
-                            MAXIMUM_NUMBER_OF_COLUMNS = UInt32.Parse(Regex.Match(l, @"\d+").Value);
+                        Log.Error("Config", e.Message);
                     }
+                    
                 }
                 // MIN MAX HORIZONTAL VERTICAL WORDS
                 if (Regex.IsMatch(l, numberOfHorizontalVerticalPattern))
                 {
-                    if (Regex.IsMatch(l, @".*HORIZONTAL.*"))
+                    try
+                    {
+
+                        if (Regex.IsMatch(l, @".*HORIZONTAL.*"))
                     {
                         if (Regex.IsMatch(l, @".*MINIMUM.*"))
                             MINIMUM_HORIZONTAL_WORDS = UInt32.Parse(Regex.Match(l, @"\d+").Value);
@@ -173,13 +243,22 @@ namespace Ass1Sol1
                         else
                             MAXIMUM_VERTICAL_WORDS = UInt32.Parse(Regex.Match(l, @"\d+").Value);
                     }
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Config", e.Message);
+                    }
+                    
                 }
 
 
                 // MIN MAX INTERSECTIONS HORIZONTALLY AND VERTICALLY
                 if (Regex.IsMatch(l, numberOfIntersectionsPattern))
                 {
-                    if (Regex.IsMatch(l, @".*HORIZONTAL.*"))
+                    try
+                    {
+
+                        if (Regex.IsMatch(l, @".*HORIZONTAL.*"))
                     {
                         if (Regex.IsMatch(l, @".*MINIMUM.*"))
                             MINIMUM_INTERSECTIONS_IN_HORIZONTAL_WORDS = UInt32.Parse(Regex.Match(l, @"\d+").Value);
@@ -193,22 +272,38 @@ namespace Ass1Sol1
                         else
                             MAXIMUM_INTERSECTIONS_IN_VERTICAL_WORDS = UInt32.Parse(Regex.Match(l, @"\d+").Value);
                     }
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Config", e.Message);
+                    }
+                    
                 }
 
                 // MIN MAX SAME WORD 
 
                 if (Regex.IsMatch(l, numberOfSameWordPattern))
                 {
+                    try
+                    {
                     if (Regex.IsMatch(l, @"MINIMUM"))
                         MINIMUM_NUMBER_OF_THE_SAME_WORD = UInt32.Parse(Regex.Match(l, @"\d+").Value);
                     else
                         MAXIMUM_NUMBER_OF_THE_SAME_WORD = UInt32.Parse(Regex.Match(l, @"\d+").Value);
+                        
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Config", e.Message);
+                    }
+                    
                 }
 
 
                 // MIN MAX GROUPS
                 if (Regex.IsMatch(l, numberOfGroupsPattern))
                 {
+
                     if (Regex.IsMatch(l, @"MINIMUM"))
                         MINIMUM_NUMBER_OF_GROUPS = UInt32.Parse(Regex.Match(l, @"\d+").Value);
                     else

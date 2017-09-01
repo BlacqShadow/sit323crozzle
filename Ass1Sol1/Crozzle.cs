@@ -22,7 +22,13 @@ namespace Ass1Sol1
         private string wordlistFile;
         private char[,] crozzleMap;
         private string wordPattern = @"^\s*(ROW|COLUMN)=\d+,[a-zA-Z]+,\d+\s*";
+        private string color;
         private bool isValid;
+        private bool outofbounds = false;
+        public int score = 0;
+        private int wordsAddedToCrozzle;
+        public Configuration config;
+        public Wordlist wordList;
 
         public Crozzle(string fileName)
         {
@@ -43,12 +49,15 @@ namespace Ass1Sol1
 
             //Initialize form
             extractData();
-            validateCrozzle(new Configuration(configurationFile));
-            validateWordList(new Wordlist(wordlistFile));
+            config = new Configuration(configurationFile);
+            validateCrozzle(config);
+            wordList = new Wordlist(wordlistFile);
+            validateWordList(wordList);
             
             
         }
 
+        
 
         private void validateWordList(Wordlist wordlist)
         {
@@ -57,20 +66,26 @@ namespace Ass1Sol1
 
         private void validateCrozzle(Configuration configuration)
         {
-            Console.WriteLine("Test this function");
+            if (rows != 0 && columns != 0 && configurationFile != null && wordlistFile != null && outofbounds == false)
+                isValid = true;
         }
 
         // Comment
         public string populateForm()
         {
             //Display the table with the right no of rows and columns
-            string html = @"<table style=""width:100%; border-color: black"" border=""1"">";
+            string html = config.style;
+            html += @"<table>";
             for (int i = 0; i < rows; i++)
             {
                 html += @"<tr>";
                 for (int j = 0; j < columns; j++)
                 {
-                    html += @"<td>";
+                    if (crozzleMap[i, j] == 0)
+                        color = config.bgColorEmpty;
+                    else
+                        color = config.bgColorNonEmpty;
+                    html += "<td bgcolor=" + color + ">";
                     html += crozzleMap[i,j];
                     html += @"</td>";
                 }
@@ -86,7 +101,6 @@ namespace Ass1Sol1
                 // Extract rows and columns
                 if (Regex.IsMatch(l, rowPattern))
                 {
-                
                     //Extract the number from the string
                     rows = UInt32.Parse(Regex.Match(l, @"\d+").Value);
                 }
@@ -122,6 +136,8 @@ namespace Ass1Sol1
                 if (Regex.IsMatch(l, wordPattern))
                 {
                     createMap(Regex.Match(l, wordPattern).Value);
+                    //EveryTime a word is made increase score
+                    wordsAddedToCrozzle += 1;
                 }
             }
         }
@@ -140,11 +156,20 @@ namespace Ass1Sol1
             else
                 orientation = true;
             string word = splitData[1];
+            if(word == "")
+            {
+                outofbounds = true; 
+                Log.Error("Crozzle", "Invalid Crozzle, Missing word");
+            }
 
 
             // Populate the crozzleMap array with the appropriate values
             if (crozzleMap == null)
+            {
                 crozzleMap = new char[rows, columns];
+                score = 0;
+            }           
+                
             
 
             // populate the array depending upon the text
@@ -160,6 +185,7 @@ namespace Ass1Sol1
                     }
                     catch (IndexOutOfRangeException e)
                     {
+                        outofbounds = true;
                         Log.Error("Crozzle", string.Format("Invalid Crozzle! check word: {0}", word));
                     }
                 }
@@ -176,6 +202,7 @@ namespace Ass1Sol1
                     }
                     catch (IndexOutOfRangeException e)
                     {
+                        outofbounds = true;
                         Log.Error("Crozzle", string.Format("Invalid Crozzle! check word: {0}", word));
                     }
                 }

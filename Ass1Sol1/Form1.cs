@@ -75,5 +75,17 @@ namespace Ass1Sol1
                 webBrowser1.DocumentText = newCrozzle.populateForm();
             }
         }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void lOGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new Form2();
+            form.Show();
+            
+        }
     }
 }

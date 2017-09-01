@@ -13,3 +13,8 @@ Ass1Sol1.vshost.exe Error: 0 : Invalid Crozzle at word: ROGER
 2017-09-02 01:49:33: Error(Crozzle) - Invalid Crozzle! check word: ROGER
 2017-09-02 01:49:33: Error(Wordlist) - Duplicates found!!, invalid file.
 2017-09-02 01:50:39: Error(Crozzle) - Invalid Crozzle! check word: ROGER
+2017-09-02 06:07:04: Error(Crozzle) - Invalid Crozzle! check word: ROGER
+2017-09-02 06:07:04: Error(Wordlist) - Duplicates found!!, invalid file.
+2017-09-02 06:55:46: Error(Crozzle) - Invalid Crozzle! check word: ROGER
+2017-09-02 06:55:46: Error(Wordlist) - Duplicates found!!, invalid file.
+2017-09-02 06:56:00: Error(Crozzle) - Invalid Crozzle! check word: ROGER
